@@ -1,26 +1,26 @@
 type Book {
   id: ID!
-  title: String!
-  ISBN: String!
-  synopsis: String!
-  genres: String!
-  publicationYear: String!
+  title: String
+  ISBN: String
+  synopsis: String
+  genres: String
+  publicationYear: String
   author: [Author]
   publisher: Publisher
 }
 
 type Author {
   id: ID!
-  firstName: String!
-  lastName: String!
-  country: String!
+  firstName: String
+  lastName: String
+  country: String
   books: [Book]
 }
 
 type Publisher {
   id: ID!
-  name: String!
-  foundationYear: Int!
+  name: String
+  foundationYear: Int
   books: [Book]
 }
 
