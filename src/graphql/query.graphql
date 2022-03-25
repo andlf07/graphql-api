@@ -1,0 +1,14 @@
+type Query {
+  "Return an array with all books"
+  getAllBooks: [Book]
+  "Return an array with all authors"
+  getAllAuthors: [Author]
+  "Return an array with all publishers"
+  getAllPublishers: [Publisher]
+  "Return JUST ONE book"
+  getOneBook(id: ID!): Book
+  "Return JUST ONE author"
+  getOneAuthor(id: ID!): Author
+  "Return JUST ONE publisher"
+  getOnePublisher(id: ID!): Publisher
+}

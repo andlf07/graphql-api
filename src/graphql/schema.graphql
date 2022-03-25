@@ -1,0 +1,40 @@
+type Book {
+  id: ID!
+  title: String!
+  ISBN: String!
+  synopsis: String!
+  genres: String!
+  publicationYear: String!
+  author: [Author]
+  publisher: Publisher
+}
+
+type Author {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  country: String!
+  books: [Book]
+}
+
+type Publisher {
+  id: ID!
+  name: String!
+  foundationYear: Int!
+  books: [Book]
+}
+
+type Query {
+  "Return an array with all books"
+  getAllBooks: [Book]
+  "Return an array with all authors"
+  getAllAuthors: [Author]
+  "Return an array with all publishers"
+  getAllPublishers: [Publisher]
+  "Return JUST ONE book"
+  getOneBook(id: ID!): Book
+  "Return JUST ONE author"
+  getOneAuthor(id: ID!): Author
+  "Return JUST ONE publisher"
+  getOnePublisher(id: ID!): Publisher
+}
