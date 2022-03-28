@@ -4,6 +4,7 @@ import { resolvers } from "./resolvers/resolvers.js";
 import { dbManager } from "./db/dbManager.js";
 import { jwtToken } from "./lib/jwt.js";
 import { bookLoader } from "./loaders/bookLoader.js";
+import { config } from "../config.js";
 
 //schema
 const typeDefs = grapSchema;
@@ -30,7 +31,9 @@ class Server {
   }
   async start() {
     //start server
-    this.server.listen().then(({ url }) => console.log(`Server runing ${url}`));
+    this.server
+      .listen({ port: config.PORT })
+      .then(({ url }) => console.log(`Server runing ${url}`));
     //DB connection at start server
     await this.db.connect();
   }
