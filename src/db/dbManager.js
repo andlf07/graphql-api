@@ -3,7 +3,7 @@ import { config } from "../../config.js";
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = config;
 
-class DBManager {
+export class DBManager {
   constructor() {
     this.dbName = DB_NAME;
   }

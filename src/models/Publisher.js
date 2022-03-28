@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 
 const PublisherSchema = new Schema({
   name: {
@@ -12,7 +13,7 @@ const PublisherSchema = new Schema({
     type: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Book",
+        ref: "Books",
       },
     ],
   },
@@ -26,4 +27,4 @@ PublisherSchema.methods.toJSON = function () {
   return publisher;
 };
 
-export const publisherSchema = model("Publisher", PublisherSchema);
+export const publisherSchema = model("Publishers", PublisherSchema);

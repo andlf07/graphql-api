@@ -1,16 +1,16 @@
 type Book {
-  id: ID!
+  id: ID
   title: String
-  ISBN: String
+  ISBN: ISBNNumber
   synopsis: String
   genres: String
   publicationYear: String
   author: [Author]
-  publisher: Publisher
+  publisher: [Publisher]
 }
 
 type Author {
-  id: ID!
+  id: ID
   firstName: String
   lastName: String
   country: String
@@ -18,7 +18,7 @@ type Author {
 }
 
 type Publisher {
-  id: ID!
+  id: ID
   name: String
   foundationYear: Int
   books: [Book]
@@ -26,15 +26,79 @@ type Publisher {
 
 type Query {
   "Return an array with all books"
-  getAllBooks: [Book]
+  books(
+    author: String
+    publisher: String
+    title: String
+    publicationYear: String
+    min: Int
+    max: Int
+    order: String
+  ): [Book]
   "Return an array with all authors"
-  getAllAuthors: [Author]
+  authors: [Author]
   "Return an array with all publishers"
-  getAllPublishers: [Publisher]
+  publishers: [Publisher]
   "Return JUST ONE book"
-  getOneBook(id: ID!): Book
+  oneBook(id: ID!): Book
   "Return JUST ONE author"
-  getOneAuthor(id: ID!): Author
+  oneAuthor(id: ID!): Author
   "Return JUST ONE publisher"
-  getOnePublisher(id: ID!): Publisher
+  onePublisher(id: ID!): Publisher
 }
+
+input AuthorInput {
+  id: ID
+  firstName: String
+  lastName: String
+  country: String
+  books: [BookInput]
+}
+
+input BookInput {
+  title: String!
+  ISBN: ISBNNumber!
+  synopsis: String
+  genres: String
+  publicationYear: String
+  author: [AuthorInput]
+  publisher: PublisherInput
+}
+
+input BookUpdateInput {
+  title: String
+  ISBN: ISBNNumber
+  synopsis: String
+  genres: String
+  publicationYear: String
+  author: [AuthorInput]
+  publisher: PublisherInput
+}
+
+input PublisherInput {
+  id: ID
+  name: String
+  foundationYear: Int
+  books: [BookInput]
+}
+
+input LoginAuthor {
+  firstName: String
+  lastName: String
+}
+
+type LoginOutput {
+  firstName: String
+  lastName: String
+  token: String
+}
+
+type Mutation {
+  "Book creation/update"
+  createBook(input: BookInput!): Book
+  updateBook(input: BookUpdateInput!, id: ID!): Book
+  "Login generate jsonwebtoken"
+  login(input: LoginAuthor): LoginOutput
+}
+
+scalar ISBNNumber

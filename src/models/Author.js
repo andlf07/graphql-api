@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 
 const AuthorSchema = new Schema({
   firstName: {
@@ -16,7 +17,7 @@ const AuthorSchema = new Schema({
     type: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Book",
+        ref: "Books",
       },
     ],
   },
@@ -30,4 +31,4 @@ AuthorSchema.methods.toJSON = function () {
   return author;
 };
 
-export const authorSchema = model("Author", AuthorSchema);
+export const authorModel = model("Authors", AuthorSchema);
