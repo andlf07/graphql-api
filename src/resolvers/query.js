@@ -10,3 +10,5 @@ export default {
   oneAuthor: (root, args) => authorResolver.findOne(args),
   onePublisher: (root, args) => publisherResolver.findOne(args),
 };
+
+// bookResolver.findAll(args, context)

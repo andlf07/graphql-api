@@ -3,6 +3,7 @@ import { grapSchema } from "./readTypes.js";
 import { resolvers } from "./resolvers/resolvers.js";
 import { dbManager } from "./db/dbManager.js";
 import { jwtToken } from "./lib/jwt.js";
+import { bookLoader } from "./loaders/bookLoader.js";
 
 //schema
 const typeDefs = grapSchema;

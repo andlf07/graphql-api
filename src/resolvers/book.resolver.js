@@ -22,11 +22,11 @@ class BookResolver {
           .populate(["author", "publisher"])
           .sort({ title: order, publicationYea: order });
         const filter = filterBook.filter((book) => {
-          console.log(filter);
           let authorBook = book.author[0].firstName.includes(author);
           let publisherBook = book.publisher[0].name.includes(publisher);
           return authorBook || publisherBook;
         });
+
         return filter;
       }
       const books = await bookModel
